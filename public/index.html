@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTG Box Label Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>&#9670; MTG Box Label Generator</h1>
+    <p class="subtitle">Search sets, select your boxes, print labels</p>
+  </header>
+
+  <main>
+    <!-- LEFT: Set browser -->
+    <section id="browser-panel">
+      <div id="controls">
+        <input type="text" id="search-input" placeholder="Search by name or code..." autocomplete="off" />
+
+        <div id="type-filter">
+          <select id="type-select">
+            <option value="">All Types</option>
+            <option value="core">Core</option>
+            <option value="expansion">Expansion</option>
+            <option value="masters">Masters</option>
+            <option value="commander">Commander</option>
+            <option value="draft_innovation">Draft Innovation</option>
+            <option value="funny">Funny (Un-sets)</option>
+            <option value="starter">Starter</option>
+            <option value="box">Box Set</option>
+            <option value="promo">Promo</option>
+            <option value="token">Token</option>
+            <option value="memorabilia">Memorabilia</option>
+          </select>
+          <label class="toggle-label">
+            <input type="checkbox" id="hide-digital" checked />
+            Hide digital-only
+          </label>
+        </div>
+
+        <div id="format-toggles">
+          <span class="format-label">Format:</span>
+          <button class="format-btn" data-format="standard">Standard</button>
+          <button class="format-btn" data-format="play">Play</button>
+<button class="format-btn" data-format="legacy">Legacy</button>
+          <button class="format-btn" data-format="vintage">Vintage</button>
+          <button id="select-all-btn" class="quick-btn">Select All</button>
+          <button id="select-none-btn" class="quick-btn">Select None</button>
+        </div>
+      </div>
+
+      <div id="set-list-header">
+        <span></span>
+        <span>Set</span>
+        <span>Code</span>
+        <span>Released</span>
+        <span>Cards</span>
+        <span>Formats</span>
+        <span>#</span>
+      </div>
+
+      <div id="set-list">
+        <div id="loading">Loading sets...</div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Label config + preview -->
+    <section id="label-panel">
+      <h2>Label Options</h2>
+
+      <div class="option-group">
+        <label>Label Size</label>
+        <div id="size-buttons">
+          <button class="size-btn active" data-size="standard">Standard (4" × 2")</button>
+          <button class="size-btn" data-size="tall">Tall (4" × 3")</button>
+          <button class="size-btn" data-size="custom">Custom</button>
+        </div>
+        <div id="custom-size" style="display:none;">
+          <input type="number" id="custom-width" placeholder='Width (in)' min="1" max="8" step="0.25" value="4" />
+          <span> × </span>
+          <input type="number" id="custom-height" placeholder='Height (in)' min="1" max="5" step="0.25" value="2" />
+          <span> inches</span>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <label>Custom Note <span class="hint">(optional, e.g. "Box 1 of 3")</span></label>
+        <input type="text" id="custom-note" placeholder="Note for all labels..." maxlength="50" />
+      </div>
+
+      <div id="selected-summary">
+        <span id="selected-count">0 sets selected</span>
+        <button id="generate-btn" disabled>Generate PDF</button>
+      </div>
+
+      <div id="preview-area">
+        <h2>Label Preview</h2>
+        <div id="preview-container">
+          <div id="preview-empty">Select a set to preview</div>
+          <canvas id="preview-canvas" style="display:none;"></canvas>
+        </div>
+        <p id="preview-set-name" class="preview-caption"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="formats.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
